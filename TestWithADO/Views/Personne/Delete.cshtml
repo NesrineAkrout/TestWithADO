@@ -1,0 +1,33 @@
+﻿@model TestWithADO.Models.Personne
+@{
+    ViewData["Title"] = "Supprimer une personne";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>Êtes-vous sûr de vouloir supprimer la personne suivante ?</p>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Nom :</dt>
+        <dd>@Model.Nom</dd>
+        <dt>Prénom :</dt>
+        <dd>@Model.Prenom</dd>
+        <dt>Date de naissance :</dt>
+        <dd>@Model.DateNaissance.ToString("dd/MM/yyyy")</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <!-- Champ caché pour l'ID de la personne, nécessaire pour l'action de suppression -->
+    <input type="hidden" asp-for="PersonneID" />
+
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+    <a href="@Url.Action("Index", "Personne")" class="btn btn-secondary">Annuler</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

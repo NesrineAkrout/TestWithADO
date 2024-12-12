@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TestWithADO.Models.Personne>
+
+<h2>Liste des personnes</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date de naissance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personne in Model)
+        {
+            <tr>
+                <td>@personne.Nom</td>
+                <td>@personne.Prenom</td>
+                <td>@personne.DateNaissance.ToString("dd MMM yyyy")</td>
+                <td>
+                   
+                    <a asp-action="Edit" asp-controller="Personne" asp-route-id="@personne.PersonneID">Modifier</a> |
+                    <a asp-action="Delete" asp-controller="Personne" asp-route-id="@personne.PersonneID">Supprimer</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Personne")">Ajouter une personne</a>
